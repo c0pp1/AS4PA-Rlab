@@ -1,0 +1,20 @@
+data {
+
+    for (i in 1:N) {
+        X[i] ~ dbern(p.true);
+    }
+}
+
+model {
+
+    # data likelihood
+    for (i in 1:N) {
+        X[i] ~ dbern(p);
+    }
+
+    # a beta prior for p
+    p ~ dbeta(alpha, beta);
+
+    # Predicted data , given p
+    y ~ dbin(p, n_next);
+}
