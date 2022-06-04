@@ -1,0 +1,17 @@
+model {
+
+    # data likelihood for first set of observations
+    for (i in 1:length(X)) {
+        X[i] ~ dpois(lambda1);
+    }
+
+    # data likelihood for second set of observations
+    for (i in 1:length(Y)) {
+        Y[i] ~ dpois(lambda2);
+    }
+
+    # a uniform prior for lambda
+    lambda1 ~ dbeta(alpha, beta);
+    lambda2 ~ dbeta(alpha, beta);
+
+}
